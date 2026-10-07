@@ -1,0 +1,114 @@
+LOCAL verification on Node.js 24.19.0; GitHub Actions has not been run here.
+
+$ npm ci --offline --no-audit --no-fund
+
+up to date in 162ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0
+
+$ npm start
+
+> devops-lab@1.0.0 start
+> node src/app.js
+
+Final price: $90.00
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0
+
+FIRST RUN: correct test
+
+$ npm test
+
+> devops-lab@1.0.0 test
+> node --test
+
+✔ A 10% discount on $100 returns $90 (0.697013ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.124137
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0
+
+$ npm run build
+
+> devops-lab@1.0.0 build
+> node scripts/build.js
+
+Build ready: dist/app.js
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0
+
+SECOND RUN: deliberately wrong expected result
+
+$ npm test
+
+> devops-lab@1.0.0 test
+> node --test
+
+✖ A 10% discount on $100 returns $90 (1.354185ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.997621
+
+✖ failing tests:
+
+test at tests/app.test.js:5:1
+✖ A 10% discount on $100 returns $90 (1.354185ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  90 !== 80
+  
+      at TestContext.<anonymous> (/workspace/scratch/6d34bc770692/output/devops-lab/tests/app.test.js:6:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 90,
+    expected: 80,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 1
+
+Build skipped because the test failed.
+
+THIRD RUN: restored correct result
+
+$ npm test
+
+> devops-lab@1.0.0 test
+> node --test
+
+✔ A 10% discount on $100 returns $90 (0.606406ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.713137
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0
+
+$ npm run build
+
+> devops-lab@1.0.0 build
+> node scripts/build.js
+
+Build ready: dist/app.js
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+Exit code: 0

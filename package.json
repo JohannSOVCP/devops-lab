@@ -1,0 +1,11 @@
+{
+  "name": "devops-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A discount calculator for the first CI pipeline lab",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "node --test",
+    "build": "node scripts/build.js"
+  }
+}
